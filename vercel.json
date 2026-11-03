@@ -6,8 +6,8 @@
       "framework": "tanstack-start-lovable"
     }
   },
-  "installCommand": "npm ci", // installs devDependencies too
-  "buildCommand": "npm run build", // runs `vite build`
+  "installCommand": "npm install",
+  "buildCommand": "npm run build",
   "rewrites": [
     {
       "source": "/(.*)",
