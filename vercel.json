@@ -1,28 +1,14 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "services": {
-    "node-api": {
-      "root": "Backend/node-api",
-      "framework": "express"
-    },
     "induplix-source": {
       "root": "Frontend/induplix-source",
       "framework": "tanstack-start-lovable"
     }
   },
+  "installCommand": "npm ci", // installs devDependencies too
+  "buildCommand": "npm run build", // runs `vite build`
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": {
-        "service": "node-api"
-      }
-    },
-    {
-      "source": "/health",
-      "destination": {
-        "service": "node-api"
-      }
-    },
     {
       "source": "/(.*)",
       "destination": {
