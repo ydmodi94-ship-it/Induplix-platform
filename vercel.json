@@ -3,11 +3,11 @@
   "services": {
     "induplix-source": {
       "root": "Frontend/induplix-source",
-      "framework": "tanstack-start-lovable"
+      "framework": "tanstack-start-lovable",
+      "installCommand": "npm install",
+      "buildCommand": "npm run build"
     }
   },
-  "installCommand": "npm install",
-  "buildCommand": "npm run build",
   "rewrites": [
     {
       "source": "/(.*)",
