@@ -49,7 +49,7 @@ const inquiryInputSchema = z.object({
   industry: z.enum(INDUSTRIES).optional(),
   location: z.string().trim().max(120).optional(),
   serviceInterest: z.enum(SERVICE_INTERESTS, {
-    errorMap: () => ({ message: "Please select a valid service of interest." }),
+    error: "Please select a valid service of interest.",
   }),
   message: z.string().trim().min(10, "Please provide at least 10 characters describing the workflow challenge").max(3000),
   source: z.string().trim().max(50).optional(),
@@ -63,7 +63,7 @@ const contactFormSchema = z.object({
   phone: z.string().trim().max(25).optional().or(z.literal("")),
   industry: z.enum(INDUSTRIES).optional(),
   service: z.enum(SERVICE_INTERESTS, {
-    errorMap: () => ({ message: "Please select a valid service of interest." }),
+    error: "Please select a valid service of interest.",
   }),
   challenge: z.string().trim().min(10, "Please describe the challenge in at least 10 characters").max(3000),
 });

@@ -20,7 +20,7 @@ export function errorHandler(err: unknown, req: Request, res: Response, _next: N
   const requestId = (req as any).id || req.headers["x-request-id"] || "unknown";
 
   if (err instanceof ZodError) {
-    const formattedErrors = err.errors.map((e) => ({
+    const formattedErrors = err.issues.map((e) => ({
       path: e.path.join("."),
       message: e.message,
     }));
