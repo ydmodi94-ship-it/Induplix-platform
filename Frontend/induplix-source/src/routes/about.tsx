@@ -36,7 +36,10 @@ function About() {
         eyebrow="About Induplix"
         title="Better everyday operations for industrial businesses."
         intro="Induplix helps industrial businesses improve everyday operations through practical digital solutions, workflow improvements, automation, and AI where appropriate."
+<<<<<<< HEAD
         image="/about-industrial-team.jpeg"
+=======
+>>>>>>> 1d26ed534988ebc1b8ac4cd9af1a034a5e8f7a59
       />
 
       <section className="container-site grid gap-12 py-20 md:py-28 lg:grid-cols-2">

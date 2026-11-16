@@ -1,5 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+<<<<<<< HEAD
 import { ArrowRight, AlertCircle, Check } from "lucide-react";
+=======
+import { AlertCircle, ArrowRight, Check } from "lucide-react";
+>>>>>>> 1d26ed534988ebc1b8ac4cd9af1a034a5e8f7a59
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
@@ -7,9 +11,15 @@ import { ServiceWorkflow } from "@/components/site/ServiceWorkflow";
 import { CtaBanner } from "@/components/site/CtaBanner";
 import { services } from "@/lib/content";
 
+<<<<<<< HEAD
 const title = "Industrial Digital Solutions & AI Automation | Induplix";
 const description =
   "Explore practical digital solutions for chemical, engineering and manufacturing businesses. Improve RFQ management, quotations, procurement, documentation and invoice workflows with Induplix.";
+=======
+const title = "Solutions — AI RFQ Intake, Quote Follow-up, Invoice Checks | Induplix";
+const description =
+  "Explore Induplix services: AI RFQ Intake, Quote Follow-up, Invoice Exception Checker, and AI Automations — with clear deliverables, requirements, and limitations.";
+>>>>>>> 1d26ed534988ebc1b8ac4cd9af1a034a5e8f7a59
 
 export const Route = createFileRoute("/solutions")({
   head: () => ({
@@ -26,6 +36,7 @@ export const Route = createFileRoute("/solutions")({
 });
 
 function Solutions() {
+<<<<<<< HEAD
   const navLabels: Record<string, string> = {
     "website-presence": "Digital Presence",
     "rfq-intake": "RFQ Intake",
@@ -50,18 +61,33 @@ function Solutions() {
       />
 
       {/* Sticky navigation */}
+=======
+  return (
+    <>
+      <PageHero
+        eyebrow="Solutions"
+        title="Four practical services for everyday operations."
+        intro="Each service starts with your actual process. These are proposals, not prebuilt products — feasibility and scope are confirmed with you before anything is promised."
+      />
+
+>>>>>>> 1d26ed534988ebc1b8ac4cd9af1a034a5e8f7a59
       <nav aria-label="Services on this page" className="sticky top-[var(--site-header-height)] z-40 border-b bg-background/90 backdrop-blur">
         <ul className="container-site flex gap-2 overflow-x-auto py-3">
           {services.map((s) => (
             <li key={s.id}>
               <a href={`#${s.id}`} className="block whitespace-nowrap rounded-full border px-4 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:border-teal hover:text-foreground">
+<<<<<<< HEAD
                 {navLabels[s.id] || s.name}
+=======
+                {s.name}
+>>>>>>> 1d26ed534988ebc1b8ac4cd9af1a034a5e8f7a59
               </a>
             </li>
           ))}
         </ul>
       </nav>
 
+<<<<<<< HEAD
       {/* Overview cards */}
       <section id="overview" className="container-site py-20" aria-label="Solutions Overview">
         <h2 className="text-3xl font-bold mb-8">Practical Solutions for Everyday Industrial Challenges.</h2>
@@ -81,6 +107,8 @@ function Solutions() {
       </section>
 
       {/* Detailed service sections */}
+=======
+>>>>>>> 1d26ed534988ebc1b8ac4cd9af1a034a5e8f7a59
       {services.map((s, idx) => (
         <section
           key={s.id}
@@ -94,6 +122,7 @@ function Solutions() {
                 <span className="bg-gradient-brand grid size-12 place-items-center rounded-xl text-charcoal">
                   <s.icon className="size-6" aria-hidden="true" />
                 </span>
+<<<<<<< HEAD
                 <p className="eyebrow text-teal-deep">{navLabels[s.id] || s.name}</p>
               </div>
               <h2 id={`${s.id}-title`} className="mt-4 text-3xl font-bold md:text-4xl">{s.name}</h2>
@@ -132,6 +161,27 @@ function Solutions() {
                   alt={s.name}
                   className="max-w-full h-auto rounded"
                 />
+=======
+                <p className="eyebrow text-teal-deep">Service 0{idx + 1}</p>
+              </div>
+              <h2 id={`${s.id}-title`} className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">{s.name}</h2>
+              <p className="mt-2 text-xl font-medium text-muted-foreground">“{s.promise}”</p>
+            </Reveal>
+
+            <div className="mt-10 grid gap-8 lg:grid-cols-2">
+              <Reveal className="space-y-6">
+                <div>
+                  <h3 className="text-lg font-semibold">The business problem</h3>
+                  <p className="mt-2 leading-relaxed text-muted-foreground">{s.problem}</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold">How the solution works</h3>
+                  <p className="mt-2 leading-relaxed text-muted-foreground">{s.approach}</p>
+                </div>
+              </Reveal>
+              <div className="min-w-0 bg-charcoal p-5 md:p-7">
+                <ServiceWorkflow kind={s.id} />
+>>>>>>> 1d26ed534988ebc1b8ac4cd9af1a034a5e8f7a59
               </div>
             </div>
 
@@ -139,7 +189,11 @@ function Solutions() {
               <Reveal className="rounded-2xl border bg-background p-6">
                 <h3 className="font-semibold">Potential deliverables</h3>
                 <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+<<<<<<< HEAD
                   {s.deliverables?.map((d) => (
+=======
+                  {s.deliverables.map((d) => (
+>>>>>>> 1d26ed534988ebc1b8ac4cd9af1a034a5e8f7a59
                     <li key={d} className="flex gap-2"><Check className="mt-0.5 size-4 shrink-0 text-teal-deep" aria-hidden="true" />{d}</li>
                   ))}
                 </ul>
@@ -147,7 +201,11 @@ function Solutions() {
               <Reveal delay={80} className="rounded-2xl border bg-background p-6">
                 <h3 className="font-semibold">What we need to understand first</h3>
                 <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+<<<<<<< HEAD
                   {s.understandFirst?.map((d) => (
+=======
+                  {s.understandFirst.map((d) => (
+>>>>>>> 1d26ed534988ebc1b8ac4cd9af1a034a5e8f7a59
                     <li key={d} className="flex gap-2"><span className="mt-2 size-1.5 shrink-0 rounded-full bg-blue" aria-hidden="true" />{d}</li>
                   ))}
                 </ul>
@@ -159,12 +217,19 @@ function Solutions() {
             </div>
 
             <Button asChild variant="hero" size="lg" className="mt-8">
+<<<<<<< HEAD
               <Link to="/contact" search={{ service: s.name }}>Discuss {s.name} <ArrowRight /></Link>
+=======
+              <Link to="/contact" search={{ service: s.name }}>
+                Discuss {s.name} <ArrowRight />
+              </Link>
+>>>>>>> 1d26ed534988ebc1b8ac4cd9af1a034a5e8f7a59
             </Button>
           </div>
         </section>
       ))}
 
+<<<<<<< HEAD
       {/* Final conversion banner */}
       <CtaBanner
         title="Your Business Has Its Own Challenges. Let's Find the Right Solutions."
@@ -172,6 +237,9 @@ function Solutions() {
         primaryCta={{ label: "Discuss Your Workflow", href: "/contact" }}
         secondaryCta={{ label: "Explore Our Solutions", href: "#overview" }}
       />
+=======
+      <CtaBanner title="Not sure which service fits?" text="Describe the challenge in your own words. We'll help identify the problem and the simplest suitable next step." />
+>>>>>>> 1d26ed534988ebc1b8ac4cd9af1a034a5e8f7a59
     </>
   );
 }

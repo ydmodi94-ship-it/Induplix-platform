@@ -19,10 +19,13 @@ const buttonVariants = cva(
         hero: "bg-gradient-brand text-charcoal shadow-glow hover:-translate-y-0.5 hover:shadow-glow-lg",
         ghostDark:
           "border border-on-dark/25 text-on-dark hover:border-teal hover:bg-on-dark/5",
+<<<<<<< HEAD
         contrast:
           "bg-yellow-600 text-white font-bold border border-black hover:bg-yellow-700",
         // High‑contrast attention variant for maximum visibility
         attention: "bg-yellow-500 text-black font-bold border border-black hover:bg-yellow-600 hover:text-white",
+=======
+>>>>>>> 1d26ed534988ebc1b8ac4cd9af1a034a5e8f7a59
       },
       size: {
         default: "h-9 px-4 py-2",

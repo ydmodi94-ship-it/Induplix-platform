@@ -99,7 +99,10 @@ function Contact() {
         eyebrow="Contact"
         title="Let's discuss your workflow."
         intro="Tell us about a repetitive task, an inefficient process, or an operational challenge. We'll discuss the problem and explore whether a practical digital solution could help."
+<<<<<<< HEAD
         image="/contact-industrial-conversation.jpeg"
+=======
+>>>>>>> 1d26ed534988ebc1b8ac4cd9af1a034a5e8f7a59
       />
 
       <section className="container-site grid gap-12 py-16 md:py-24 lg:grid-cols-[1fr_1.6fr]">
