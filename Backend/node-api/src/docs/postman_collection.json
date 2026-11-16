@@ -1,0 +1,224 @@
+{
+  "info": {
+    "_postman_id": "induplix-phase-1-api-collection",
+    "name": "Induplix Phase 1 Backend API",
+    "description": "Postman Collection for all 18 Phase 1 routes of the Induplix modular monolith.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "System",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/health"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Public Services & Inquiries",
+      "item": [
+        {
+          "name": "Get Services",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/public/services"
+          }
+        },
+        {
+          "name": "Get Service by Slug",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/public/services/ai-rfq-intake"
+          }
+        },
+        {
+          "name": "Submit Public Inquiry",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Vikram Shah\",\n  \"company\": \"Gujarat Chemical Industries\",\n  \"email\": \"vikram@gujaratchem.example.com\",\n  \"phone\": \"+91 98765 43210\",\n  \"industry\": \"Chemical\",\n  \"location\": \"Vadodara, Gujarat\",\n  \"serviceInterest\": \"AI RFQ Intake\",\n  \"message\": \"We receive over 50 RFQ documents across email and WhatsApp every week and want to organize them automatically.\"\n}"
+            },
+            "url": "{{baseUrl}}/api/v1/public/inquiries"
+          }
+        },
+        {
+          "name": "Submit Contact Form",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Raj Patel\",\n  \"company\": \"Ahmedabad Forgings\",\n  \"email\": \"raj@ahmedabadforgings.example.com\",\n  \"phone\": \"+91 91234 56789\",\n  \"industry\": \"Engineering\",\n  \"service\": \"Invoice Exception Checker\",\n  \"challenge\": \"Matching vendor invoices against purchase orders takes 15 hours of manual accounting time weekly.\"\n}"
+            },
+            "url": "{{baseUrl}}/api/v1/public/contact"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Get CSRF Token",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/auth/csrf"
+          }
+        },
+        {
+          "name": "Staff Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@induplix.com\",\n  \"password\": \"InduplixAdmin2026!\"\n}"
+            },
+            "url": "{{baseUrl}}/api/v1/auth/login"
+          }
+        },
+        {
+          "name": "Get Authenticated Me",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/auth/me"
+          }
+        },
+        {
+          "name": "Staff Logout",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/auth/logout"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Inquiries",
+      "item": [
+        {
+          "name": "List Inquiries",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/inquiries?page=1&limit=20"
+          }
+        },
+        {
+          "name": "Get Inquiry by ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/inquiries/{{inquiryId}}"
+          }
+        },
+        {
+          "name": "Update Inquiry Notes",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-csrf-token", "value": "{{csrfToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notes\": \"Followed up via phone on Nov 2nd. Client confirmed 10-person operations team.\"\n}"
+            },
+            "url": "{{baseUrl}}/api/v1/admin/inquiries/{{inquiryId}}"
+          }
+        },
+        {
+          "name": "Update Inquiry Status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-csrf-token", "value": "{{csrfToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"in_review\"\n}"
+            },
+            "url": "{{baseUrl}}/api/v1/admin/inquiries/{{inquiryId}}/status"
+          }
+        },
+        {
+          "name": "Delete Inquiry",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "x-csrf-token", "value": "{{csrfToken}}" }],
+            "url": "{{baseUrl}}/api/v1/admin/inquiries/{{inquiryId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Dashboard",
+      "item": [
+        {
+          "name": "Dashboard Summary",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/dashboard/summary"
+          }
+        },
+        {
+          "name": "Dashboard Recent Inquiries",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/dashboard/recent-inquiries"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Tenants",
+      "item": [
+        {
+          "name": "List Tenants",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/tenants"
+          }
+        },
+        {
+          "name": "Create Tenant",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-csrf-token", "value": "{{csrfToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Gujarat Specialty Chemicals\",\n  \"slug\": \"gujarat-spec-chem\",\n  \"industry\": \"Chemical\",\n  \"contactEmail\": \"ops@gujaratspecchem.com\",\n  \"contactPhone\": \"+91 99999 00000\",\n  \"status\": \"active\"\n}"
+            },
+            "url": "{{baseUrl}}/api/v1/admin/tenants"
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    },
+    {
+      "key": "csrfToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "inquiryId",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
+

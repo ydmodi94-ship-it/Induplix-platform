@@ -1,0 +1,287 @@
+openapi: 3.0.3
+info:
+  title: Induplix Phase 1 Backend API
+  version: 1.0.0
+  description: |
+    Modular monolith REST API for Induplix digital operations partner.
+    Supports public inquiries, staff authentication with server-side sessions & CSRF, and private admin operations.
+servers:
+  - url: http://localhost:5000
+    description: Local development server
+paths:
+  /health:
+    get:
+      summary: Health check endpoint
+      tags: [System]
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string, example: ok }
+                  timestamp: { type: string, format: date-time }
+                  uptime: { type: number }
+
+  /api/v1/public/services:
+    get:
+      summary: List all offered services
+      tags: [Public]
+      responses:
+        '200':
+          description: List of 4 core Induplix services
+
+  /api/v1/public/services/{slug}:
+    get:
+      summary: Get service details by slug
+      tags: [Public]
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Service detailed breakdown
+        '404':
+          description: Service not found
+
+  /api/v1/public/inquiries:
+    post:
+      summary: Submit a new business inquiry
+      tags: [Public]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, company, email, serviceInterest, message]
+              properties:
+                name: { type: string, example: "Vikram Shah" }
+                company: { type: string, example: "Gujarat Chem Ltd" }
+                email: { type: string, example: "vikram@gujaratchem.com" }
+                phone: { type: string, example: "+91 98765 43210" }
+                industry: { type: string, enum: [Chemical, Engineering, Manufacturing, Other] }
+                location: { type: string, example: "Vadodara, Gujarat" }
+                serviceInterest:
+                  type: string
+                  enum:
+                    - "AI RFQ Intake"
+                    - "Quote Follow-up"
+                    - "Invoice Exception Checker"
+                    - "AI Automations"
+                    - "General Digital Operations Improvement"
+                    - "Not Sure Yet — Help Me Identify the Problem"
+                message: { type: string, example: "We process over 40 complex RFQs a week through WhatsApp and email..." }
+      responses:
+        '201':
+          description: Inquiry persisted safely
+
+  /api/v1/public/contact:
+    post:
+      summary: Public contact form submission (frontend direct)
+      tags: [Public]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, company, email, service, challenge]
+              properties:
+                name: { type: string }
+                company: { type: string }
+                email: { type: string }
+                phone: { type: string }
+                industry: { type: string }
+                service: { type: string }
+                challenge: { type: string }
+      responses:
+        '201':
+          description: Contact inquiry created
+
+  /api/v1/auth/csrf:
+    get:
+      summary: Retrieve CSRF token for the session
+      tags: [Auth]
+      responses:
+        '200':
+          description: CSRF token
+
+  /api/v1/auth/login:
+    post:
+      summary: Staff login
+      tags: [Auth]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: { type: string, example: "admin@induplix.com" }
+                password: { type: string, example: "SecureAdminPassword123!" }
+      responses:
+        '200':
+          description: Successfully authenticated; sets HttpOnly cookie
+
+  /api/v1/auth/logout:
+    post:
+      summary: Staff logout
+      tags: [Auth]
+      responses:
+        '200':
+          description: Session revoked and cookie cleared
+
+  /api/v1/auth/me:
+    get:
+      summary: Get current authenticated staff user
+      tags: [Auth]
+      responses:
+        '200':
+          description: User profile and role
+        '401':
+          description: Not authenticated
+
+  /api/v1/admin/inquiries:
+    get:
+      summary: List inquiries with filters and pagination
+      tags: [Admin Inquiries]
+      parameters:
+        - name: page
+          in: query
+          schema: { type: integer, default: 1 }
+        - name: limit
+          in: query
+          schema: { type: integer, default: 20 }
+        - name: status
+          in: query
+          schema: { type: string, enum: [new, in_review, contacted, qualified, closed] }
+        - name: search
+          in: query
+          schema: { type: string }
+      responses:
+        '200':
+          description: Paginated inquiry records
+
+  /api/v1/admin/inquiries/{id}:
+    get:
+      summary: Get inquiry by ID
+      tags: [Admin Inquiries]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Inquiry detail
+        '404':
+          description: Not found
+
+    patch:
+      summary: Update inquiry notes or assignment
+      tags: [Admin Inquiries]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: string, enum: [new, in_review, contacted, qualified, closed] }
+                notes: { type: string }
+                assignedTo: { type: string }
+      responses:
+        '200':
+          description: Inquiry updated
+
+    delete:
+      summary: Delete an inquiry (owner_admin only)
+      tags: [Admin Inquiries]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Inquiry deleted
+
+  /api/v1/admin/inquiries/{id}/status:
+    patch:
+      summary: Update inquiry workflow status
+      tags: [Admin Inquiries]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status]
+              properties:
+                status: { type: string, enum: [new, in_review, contacted, qualified, closed] }
+      responses:
+        '200':
+          description: Status updated
+
+  /api/v1/admin/dashboard/summary:
+    get:
+      summary: Overall admin dashboard metrics
+      tags: [Admin Dashboard]
+      responses:
+        '200':
+          description: Aggregate statistics
+
+  /api/v1/admin/dashboard/recent-inquiries:
+    get:
+      summary: 10 most recent inquiries
+      tags: [Admin Dashboard]
+      responses:
+        '200':
+          description: Recent inquiries list
+
+  /api/v1/admin/tenants:
+    get:
+      summary: List all client tenants
+      tags: [Admin Tenants]
+      responses:
+        '200':
+          description: List of tenants
+
+    post:
+      summary: Create a new client tenant (owner_admin only)
+      tags: [Admin Tenants]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, slug, contactEmail]
+              properties:
+                name: { type: string, example: "Acme Industrial Components" }
+                slug: { type: string, example: "acme-industrial" }
+                industry: { type: string, example: "Engineering" }
+                contactEmail: { type: string, example: "operations@acmeind.com" }
+                contactPhone: { type: string, example: "+91 99999 88888" }
+                status: { type: string, enum: [active, suspended, closed] }
+                notes: { type: string }
+      responses:
+        '201':
+          description: Tenant created
+
