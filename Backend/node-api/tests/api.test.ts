@@ -111,6 +111,41 @@ describe("Induplix Phase 1 Backend API Integration Test Suite", () => {
     expect(res.body.success).toBe(true);
   });
 
+  it.each([
+    "Website + Google Presence + RFS Inquiry System",
+    "AI RFQ Intake & Completeness Assistant",
+    "AI Quote Follow-up & Recovery Assistant",
+    "AI Chemical Document & COA Manager",
+    "AI Procurement & Supplier Comparison",
+    "AI Invoice Exception Checker",
+  ])(
+    "POST /api/v1/public/contact accepts service: %s",
+    async (service) => {
+      const res = await request(app)
+        .post("/api/v1/public/contact")
+        .send({
+          name: "Test Frontend User",
+          company: "Baroda Engineering Works",
+          email: "testlead@example.com",
+          phone: "+91 98765 99999",
+          industry: "Engineering",
+          service,
+          challenge: "We need help improving our industrial operations workflow.",
+        });
+
+      expect(res.status).toBe(201);
+      expect(res.body.success).toBe(true);
+
+      const savedInquiry = await Inquiry.findOne({
+        email: "testlead@example.com",
+        serviceInterest: service,
+      });
+
+      expect(savedInquiry).not.toBeNull();
+      expect(savedInquiry?.serviceInterest).toBe(service);
+    },
+  );
+
   it("POST /api/v1/public/inquiries rejects invalid input with safe validation errors", async () => {
     const res = await request(app)
       .post("/api/v1/public/inquiries")
