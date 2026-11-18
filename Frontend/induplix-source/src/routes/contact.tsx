@@ -91,7 +91,7 @@ function Contact() {
       <p id={`${k}-error`} className="mt-1.5 text-sm text-destructive">{errors[k]}</p>
     ) : null;
 
-  const inputCls = (k: keyof Fields) => cn("h-11 bg-card", errors[k] && "border-destructive");
+  const inputCls = (k: keyof Fields) => cn("h-11 bg-card rounded-md border", errors[k] && "border-destructive", "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring");
 
   return (
     <>
@@ -99,10 +99,7 @@ function Contact() {
         eyebrow="Contact"
         title="Let's discuss your workflow."
         intro="Tell us about a repetitive task, an inefficient process, or an operational challenge. We'll discuss the problem and explore whether a practical digital solution could help."
-<<<<<<< HEAD
         image="/contact-industrial-conversation.jpeg"
-=======
->>>>>>> 1d26ed534988ebc1b8ac4cd9af1a034a5e8f7a59
       />
 
       <section className="container-site grid gap-12 py-16 md:py-24 lg:grid-cols-[1fr_1.6fr]">
@@ -116,7 +113,7 @@ function Contact() {
           <p className="text-sm text-muted-foreground">No obligation. If we're not the right fit, we'll say so.</p>
         </aside>
 
-        <div className="rounded-2xl border bg-card p-6 shadow-card md:p-8">
+        <div className="rounded-lg border border-muted-foreground/30 bg-card p-6 md:p-8 shadow-sm">
           {isMockMode && (
             <p className="mb-6 flex gap-2 rounded-lg border border-blue/30 bg-blue/5 p-3 text-sm text-muted-foreground">
               <Info className="mt-0.5 size-4 shrink-0 text-blue" aria-hidden="true" />

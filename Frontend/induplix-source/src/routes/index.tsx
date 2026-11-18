@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Factory, FlaskConical, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { HeroVisual } from "@/components/site/HeroVisual";
 import chemicalImage from "@/assets/chemical-industry.jpg";
 import engineeringImage from "@/assets/engineering-industry.jpg";
 import manufacturingImage from "@/assets/manufacturing-industry.jpg";
@@ -38,7 +37,6 @@ function Index() {
       {/* Hero */}
       <section className="home-hero bg-hero relative overflow-hidden">
         <div className="grid-lines pointer-events-none absolute inset-0" aria-hidden="true" />
-<<<<<<< HEAD
         {/* Video background */}
         <video
           autoPlay
@@ -52,9 +50,6 @@ function Index() {
         {/* Dark overlay for readability */}
         <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
         <div className="home-hero-layout container-site relative z-10">
-=======
-        <div className="home-hero-layout container-site relative">
->>>>>>> 1d26ed534988ebc1b8ac4cd9af1a034a5e8f7a59
           <div className="min-w-0">
             <p className="eyebrow mb-4 text-teal">Digital Operations Partner</p>
             <h1 className="home-hero-title font-extrabold text-on-dark">
@@ -75,10 +70,6 @@ function Index() {
               </Button>
             </div>
           </div>
-<<<<<<< HEAD
-=======
-          <HeroVisual />
->>>>>>> 1d26ed534988ebc1b8ac4cd9af1a034a5e8f7a59
         </div>
       </section>
 
