@@ -44,10 +44,7 @@ function HowWeWork() {
         eyebrow="How we work"
         title="A clear, step-by-step engagement."
         intro="We start with your actual process and recommend the simplest suitable improvement — then build it within an agreed scope."
-<<<<<<< HEAD
         image="/how-we-work-process.jpeg"
-=======
->>>>>>> 1d26ed534988ebc1b8ac4cd9af1a034a5e8f7a59
       />
 
       <section className="container-site py-20 md:py-28">
