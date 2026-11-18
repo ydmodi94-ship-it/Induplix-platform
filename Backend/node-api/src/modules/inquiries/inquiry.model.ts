@@ -4,6 +4,15 @@ export const INQUIRY_STATUSES = ["new", "in_review", "contacted", "qualified", "
 export type InquiryStatus = (typeof INQUIRY_STATUSES)[number];
 
 export const SERVICE_INTERESTS = [
+  // Current Induplix website services
+  "Website + Google Presence + RFS Inquiry System",
+  "AI RFQ Intake & Completeness Assistant",
+  "AI Quote Follow-up & Recovery Assistant",
+  "AI Chemical Document & COA Manager",
+  "AI Procurement & Supplier Comparison",
+  "AI Invoice Exception Checker",
+
+  // Legacy services — retained for existing integrations
   "AI RFQ Intake",
   "Quote Follow-up",
   "Invoice Exception Checker",
