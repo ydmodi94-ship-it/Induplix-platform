@@ -48,7 +48,7 @@ function Index() {
           aria-hidden="true"
         />
         {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
+        <div className="absolute inset-0 bg-black/10" aria-hidden="true" />
         <div className="home-hero-layout container-site relative z-10">
           <div className="min-w-0">
             <p className="eyebrow mb-4 text-teal">Digital Operations Partner</p>
@@ -179,11 +179,11 @@ function Index() {
                 <Reveal as="li" key={ind.name} delay={i * 80} className="overflow-hidden rounded-lg border bg-background">
                   <img src={industryImages[ind.name as keyof typeof industryImages]} alt={`Illustrative ${ind.name.toLowerCase()} equipment`} width={1024} height={768} loading="lazy" className="aspect-[4/3] w-full object-cover" />
                   <div className="p-7">
-                  <Icon className="size-7 text-blue" aria-hidden="true" />
-                  <h3 className="mt-4 text-xl font-bold">{ind.name}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{ind.text}</p>
-                  <p className="mt-4 text-xs font-semibold text-teal-deep">Potential fit: {ind.apply}</p>
-                  <p className="mt-3 text-xs text-muted-foreground">Illustrative industry visual</p>
+                    <Icon className="size-7 text-blue" aria-hidden="true" />
+                    <h3 className="mt-4 text-xl font-bold">{ind.name}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{ind.text}</p>
+                    <p className="mt-4 text-xs font-semibold text-teal-deep">Potential fit: {ind.apply}</p>
+                    <p className="mt-3 text-xs text-muted-foreground">Illustrative industry visual</p>
                   </div>
                 </Reveal>
               );
